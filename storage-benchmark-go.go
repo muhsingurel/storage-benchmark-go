@@ -23,13 +23,13 @@ func check(e error) {
 //   -offsetOption int
 //         An optional offset number as number of chunks between 0-10000. Otherwise it is random (default -1)
 //   -parallelOption
-//         Optianal parallel read flag.
+//         Optional parallel read flag.
 
 func main() {
 	// Initialize random, give a seed with current time
 	rand.Seed(time.Now().UnixNano())
 	var inputFilePath = flag.String("filePath", "256GB.dummy", "filePath for the read test. A file larger than 100GB is recommended.")
-	var parallelRead = flag.Bool("parallelOption", false, "Optianal parallel read flag.")
+	var parallelRead = flag.Bool("parallelOption", false, "Optional parallel read flag.")
 	var offsetOption = flag.Int("offsetOption", -1, "An optional offset number as number of chunks between 0-10000. Otherwise it is random")
 	flag.Parse()
 	fmt.Println(*inputFilePath)
