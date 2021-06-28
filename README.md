@@ -14,3 +14,5 @@ A storage benchmark specifically developped for measuring read performance of la
       -h, --help 
           Show help and usage information
 
+ ## Example Read Scenario on a 100GB File 
+ ![Example Read Scenario on a 100GB File](images/read_behavior.jpg)
