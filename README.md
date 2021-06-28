@@ -16,3 +16,10 @@ A storage benchmark specifically developped for measuring read performance of la
 
  ## Example Read Scenario on a 100GB File 
  ![Example Read Scenario on a 100GB File](images/read_behavior.jpg)
+
+
+ ## How to compile?
+ 1) Install GO if you don't have it already https://golang.org/dl/
+ 2) Download the repo
+ 3) From your terminal set your working directory to the repo
+ 4) Type ```go build .\storage-benchmark-go.go``` to create an executable file or ```go run .\storage-benchmark-go.go``` to run it without building the code.
