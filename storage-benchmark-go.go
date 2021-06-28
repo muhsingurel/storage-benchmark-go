@@ -112,6 +112,6 @@ func main() {
 			//fmt.Printf("index: %d valur %d \n", indexx, e)
 		}
 		duration := time.Since(start)
-		fmt.Printf("Checksum: %d Sequential read operation took %d ms \n", checksum, duration.Milliseconds())
+		fmt.Printf("Checksum: %d Parallel read operation took %d ms \n", checksum, duration.Milliseconds())
 	}
 }
