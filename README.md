@@ -8,6 +8,8 @@
       storage-benchmark-go[options]
 
     Options:
+      -dataChunkSize int
+          Optianal data chunk size argument between 1024-524288(512KB) default is 10000 (default 10000)
       -filePath string 
           filePath for the read test. A file larger than 100GB is recommended. (default "256GB.dummy")
       -offsetOption int
