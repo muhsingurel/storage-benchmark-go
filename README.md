@@ -1,6 +1,6 @@
 # storage-benchmark-go
  ## Why this benchmark?
- We need to test a specific read operation of large files from storage area networks. This benchmark tool measures the sequential and parallel read performance of large files in a particular way.
+ We need to test a specific read operation of large files from network-based storage solutions. This benchmark tool measures the sequential and parallel read performance of large files in a particular way.
  
  ## Usage
 
@@ -19,6 +19,10 @@
 
  ## Example Read Scenario on a 100GB File 
  ![Example Read Scenario on a 100GB File](images/read_behavior.jpg)
+
+
+ ## Direct Download
+ You can get the latest release from [here](https://github.com/muhsingurel/storage-benchmark-go/releases)
 
 
  ## How to compile?

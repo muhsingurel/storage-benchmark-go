@@ -31,6 +31,7 @@ func main() {
 	var inputFilePath = flag.String("filePath", "256GB.dummy", "filePath for the read test. A file larger than 100GB is recommended.")
 	var parallelRead = flag.Bool("parallelOption", false, "Optional parallel read flag.")
 	var offsetOption = flag.Int("offsetOption", -1, "An optional offset number as number of chunks between 0-10000. Otherwise it is random")
+	var dataChunkSize = flag.Int("dataChunkSize", 10000, "Optianal data chunk size argument between 1024-524288(512KB) default is 10000")
 	flag.Parse()
 	fmt.Println(*inputFilePath)
 	f, err := os.Open(*inputFilePath)
@@ -40,9 +41,19 @@ func main() {
 		panic(err)
 	}
 
+	DataChunkSize := 10000
+	// Ensure that the dataChunkSize is between 1024-524288(512KB) otherwise set it to min or max
+	if *dataChunkSize > 1024 && *dataChunkSize < 512*1024 {
+		DataChunkSize = *dataChunkSize
+	} else if *dataChunkSize < 1024 {
+		DataChunkSize = 1024
+	} else if *dataChunkSize > 512*1024 {
+		DataChunkSize = 512 * 1024
+	}
+
 	fmt.Printf("The file is %d bytes long", fi.Size())
 	var checksum uint64 = 0
-	var singleChunkBufferLenght = 10000
+	var singleChunkBufferLenght = DataChunkSize
 	var maxOffsetAsChunks int64 = 10000
 	var numberOfChunksToRead = (fi.Size() / (int64(singleChunkBufferLenght) * maxOffsetAsChunks))
 	OffsetNumber := 0
@@ -73,7 +84,7 @@ func main() {
 			fmt.Printf("Offset value: %d  Chunk Number: %d  Position: %d  Filelength: %d \n", OffsetNumber, chunkIndex, position, fi.Size())
 		}
 		duration := time.Since(start)
-		fmt.Printf("Checksum: %d Sequential read operation took %d ms \n", checksum, duration.Milliseconds())
+		fmt.Printf("Data chunk size: %d Checksum: %d Sequential read operation took %d ms \n", singleChunkBufferLenght, checksum, duration.Milliseconds())
 	} else {
 		// Parallel read test
 		start := time.Now()
@@ -112,6 +123,6 @@ func main() {
 			//fmt.Printf("index: %d valur %d \n", indexx, e)
 		}
 		duration := time.Since(start)
-		fmt.Printf("Checksum: %d Parallel read operation took %d ms \n", checksum, duration.Milliseconds())
+		fmt.Printf("Data chunk size: %d Checksum: %d Parallel read operation took %d ms \n", singleChunkBufferLenght, checksum, duration.Milliseconds())
 	}
 }
