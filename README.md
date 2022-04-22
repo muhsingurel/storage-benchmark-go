@@ -28,7 +28,7 @@
 
 
  ## How to compile?
- 1) Install GO if you don't have it already https://golang.org/dl/
+ 1) Install GO if you don't already have it https://golang.org/dl/
  2) Download the repo
  3) From your terminal set your working directory to the repo
  4) Type ```go build .\storage-benchmark-go.go``` to create an executable file or ```go run .\storage-benchmark-go.go``` to run it without building the code.
